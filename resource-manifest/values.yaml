@@ -6,7 +6,7 @@ image: ""
 port: ""
 env: dev
 progressDeadlineSeconds: 150
-resources:
+containerResources:
   enabled: false
 
 service:
