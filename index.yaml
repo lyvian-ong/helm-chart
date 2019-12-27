@@ -3,12 +3,12 @@ entries:
   resource-manifest:
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2019-12-27T16:56:04.197491+08:00"
+    created: "2019-12-27T17:03:02.652439+08:00"
     description: A Helm chart for Kubernetes
-    digest: 4397b9c97f9d226801658cd746771f298f2858af6ce0e6ae4e03a5d24f3d0598
+    digest: a2f500121764fcc4dd34141c658570c39a840c5dfda09076ee53264747c0addf
     name: resource-manifest
     type: application
     urls:
     - https://lyvian-ong.github.io/helm-chart/resource-manifest-0.1.0.tgz
     version: 0.1.0
-generated: "2019-12-27T16:56:04.193878+08:00"
+generated: "2019-12-27T17:03:02.651264+08:00"

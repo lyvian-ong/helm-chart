@@ -38,5 +38,5 @@ spec:
             - containerPort: {{ .Values.port }}
           {{- if .Values.containerResources.enabled }}
           resources:
-            {{ toYaml .Values.containerResources.resources | indent 12 }}
+            {{ toYaml $.Values.containerResources.resources | indent 12 }}
           {{- end }}
