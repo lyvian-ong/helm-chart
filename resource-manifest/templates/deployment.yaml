@@ -36,7 +36,7 @@ spec:
               value: {{ .Values.env }}
           ports:
             - containerPort: {{ .Values.port }}
-          {{- if .Values.containerResources.enabled }}
+          # {{- if .Values.containerResources.enabled }}
           resources:
             requests:
               memory: "1950Mi"
@@ -44,4 +44,4 @@ spec:
             limits:
               memory: "1950Mi"
               cpu: "950m"
-          {{- end }}
+          # {{- end }}
