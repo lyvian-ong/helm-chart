@@ -6,7 +6,8 @@ image: ""
 port: ""
 env: dev
 progressDeadlineSeconds: 150
-resources: ""
+resources:
+  enabled: false
 
 service:
   type: ClusterIP
