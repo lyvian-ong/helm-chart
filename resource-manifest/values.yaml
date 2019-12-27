@@ -1,0 +1,25 @@
+# Default values for resource-manifest.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+replicaCount: 1
+image: ""
+port: ""
+
+service:
+  type: ClusterIP
+  port: 80
+
+virtualService:
+  http:
+    - uriPrefix: ""
+      rewrite: ""
+      routeDestination: ""
+
+horizontalPodAutoscaler:
+  enabled: false
+  autoscaleMax: 2
+  autoscaleMin: 2
+  cpu:
+    targetAverageUtilization: 70
+  memory:
+    targetAverageUtilization: 70

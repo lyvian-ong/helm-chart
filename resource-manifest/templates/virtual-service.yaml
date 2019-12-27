@@ -1,0 +1,27 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ include "resource-manifest.fullname" . }}
+  labels:
+    {{- include "resource-manifest.labels" . | nindent 4 }}
+    # virtualservice: {{ include "resource-manifest.fullname" . }}
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - default/ingress-gateway # 1
+  http:
+    {{- range .Values.virtualService.http }}
+    - match:
+        - uri:
+            prefix: {{ .uriPrefix }}
+      {{- if .rewrite }}
+      rewrite:
+        uri: {{ .rewrite }}
+      {{- end }}
+      route:
+        - destination:
+            host: {{ .routeDestination }}
+            subset: v1
+          weight: 100
+    {{- end }}
