@@ -13,7 +13,7 @@ spec:
        {{- include "resource-manifest.selectorLabels" . | nindent 6 }}
       # pod: {{ include "resource-manifest.fullname" . }}
   minReadySeconds: 15
-  progressDeadlineSeconds: 90
+  progressDeadlineSeconds: {{ .Values.progressDeadlineSeconds }}
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -31,9 +31,12 @@ spec:
         - image: {{ .Values.image }}
           imagePullPolicy: Always
           name: {{ include "resource-manifest.fullname" . }}
+          env:
+            - name: ENVIRONMENT
+              value: {{ .Values.env }}
           ports:
             - containerPort: {{ .Values.port }}
+          {{- if .Values.resources }}
           resources:
-            requests:
-              memory: '400Mi'
-              cpu: '300m'
+            {{ toYaml .Values.resources | indent 12 }}
+          {{- end }}

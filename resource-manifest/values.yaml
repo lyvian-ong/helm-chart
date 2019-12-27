@@ -4,6 +4,9 @@
 replicaCount: 1
 image: ""
 port: ""
+env: dev
+progressDeadlineSeconds: 150
+resources: ""
 
 service:
   type: ClusterIP
