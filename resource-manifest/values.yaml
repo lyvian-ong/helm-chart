@@ -4,7 +4,7 @@
 replicaCount: 1
 image: ""
 port: ""
-env: dev
+env: ""
 progressDeadlineSeconds: 150
 resources: ""
 
