@@ -1,0 +1,14 @@
+nameOverride: ica-photo-editor
+image: 890520392723.dkr.ecr.ap-southeast-1.amazonaws.com/icpp-dev-photo-editor-repo:master-200
+port: 3000
+virtualService:
+  http:
+    - uriPrefix: /photo-editor
+      routeDestination: ica-photo-editor
+resources:
+  requests:
+    memory: "1950Mi"
+    cpu: "950m"
+  limits:
+    memory: "1950Mi"
+    cpu: "950m"
