@@ -1,13 +1,16 @@
 # Default values for resource-manifest.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-# deployment:
-replicaCount: 1
-image: ""
-port: ""
-env: ""
-progressDeadlineSeconds: 150
-resources: ""
+# Group by kubernetes kind (eg. deployment, service)
+deployment:
+  progressDeadlineSeconds: 150
+  rollingUpdate:
+    maxUnavailable: 1 #number of pods are down during update TODO
+    maxSurge: 1 #number of pods are created above the desired number of pods TODO
+  image: ""
+  port: ""
+  env: ""
+  resources: ""
 
 service:
   type: ClusterIP
@@ -20,7 +23,6 @@ virtualService:
       routeDestination: ""
 
 horizontalPodAutoscaler:
-  enabled: false
   autoscaleMax: 1
   autoscaleMin: 1
   cpu:

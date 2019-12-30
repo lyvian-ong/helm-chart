@@ -2,40 +2,36 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "resource-manifest.fullname" . }}
-  namespace: {{ .Values.namespace | default $.Release.Namespace }}
+  namespace: {{ .Values.deployment.namespace | default $.Release.Namespace }}
   labels:
      {{- include "resource-manifest.labels" . | nindent 4 }}
-    # deployment: {{ include "resource-manifest.fullname" . }}
 spec:
-  # replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
        {{- include "resource-manifest.selectorLabels" . | nindent 6 }}
-      # pod: {{ include "resource-manifest.fullname" . }}
   minReadySeconds: 15
-  progressDeadlineSeconds: {{ .Values.progressDeadlineSeconds }}
+  progressDeadlineSeconds: {{ .Values.deployment.progressDeadlineSeconds }}
   strategy:
     type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 1 #number of pods are down during update TODO
-      maxSurge: 1 #number of pods are created above the desired number of pods TODO
+    {{- if .Values.deployment.rollingUpdate }}
+    rollingUpdate:  {{ toYaml .Values.deployment.rollingUpdate | nindent 6 }}
+    {{- end }}
   template:
     metadata:
       labels:
         {{- include "resource-manifest.selectorLabels" . | nindent 8 }}
-        # pod: {{ include "resource-manifest.fullname" . }}
         app: {{ include "resource-manifest.fullname" . }}
         version: v1
     spec:
       containers:
-        - image: {{ .Values.image }}
+        - image: {{ .Values.deployment.image }}
           imagePullPolicy: Always
           name: {{ include "resource-manifest.fullname" . }}
           env:
             - name: ENVIRONMENT
-              value: {{ .Values.env }}
+              value: {{ .Values.deployment.env }}
           ports:
-            - containerPort: {{ .Values.port }}
-          {{- if .Values.resources }}
-          resources: {{ toYaml .Values.resources | nindent 12 }}
+            - containerPort: {{ .Values.deployment.port }}
+          {{- if .Values.deployment.resources }}
+          resources: {{ toYaml .Values.deployment.resources | nindent 12 }}
           {{- end }}

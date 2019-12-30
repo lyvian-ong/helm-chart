@@ -4,7 +4,6 @@ metadata:
   name: {{ include "resource-manifest.fullname" . }}
   labels:
     {{- include "resource-manifest.labels" . | nindent 4 }}
-    # virtualservice: {{ include "resource-manifest.fullname" . }}
 spec:
   hosts:
     - "*"

@@ -1,4 +1,3 @@
-{{- if .Values.horizontalPodAutoscaler.enabled }}
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
@@ -12,15 +11,16 @@ spec:
         name: cpu
         target:
           type: Utilization
-          averageUtilization: {{ .Values.horizontalPodAutoscaler.cpu.targetAverageUtilization }}
+          averageUtilization:
+            {{ .Values.horizontalPodAutoscaler.cpu.targetAverageUtilization }}
     - type: Resource
       resource:
         name: memory
         target:
           type: Utilization
-          averageUtilization: {{ .Values.horizontalPodAutoscaler.memory.targetAverageUtilization }}
+          averageUtilization:
+            {{ .Values.horizontalPodAutoscaler.memory.targetAverageUtilization }}
   scaleTargetRef:
     apiVersion: extensions/v1beta1
     kind: Deployment
     name: {{ include "resource-manifest.fullname" . }}
-{{- end }}

@@ -1,16 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "resource-manifest.fullname" . }}
-  labels:
-    {{- include "resource-manifest.labels" . | nindent 4 }}
-    # service: {{ include "resource-manifest.fullname" . }}
+  name: { { include "resource-manifest.fullname" . } }
+  labels: { { - include "resource-manifest.labels" . | nindent 4 } }
 spec:
-  type: {{ .Values.service.type }}
-  selector:
-    {{- include "resource-manifest.selectorLabels" . | nindent 4 }}
-    # pod: {{ include "resource-manifest.fullname" . }}
+  type: { { .Values.service.type } }
+  selector: { { - include "resource-manifest.selectorLabels" . | nindent 4 } }
   ports:
     - name: http
-      port: {{ .Values.service.port }}
-      targetPort: {{ .Values.port }}
+      port: { { .Values.service.port } }
+      targetPort: { { .Values.port } }
