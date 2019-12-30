@@ -1,6 +1,7 @@
 # Default values for resource-manifest.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
+# deployment:
 replicaCount: 1
 image: ""
 port: ""
@@ -20,8 +21,8 @@ virtualService:
 
 horizontalPodAutoscaler:
   enabled: false
-  autoscaleMax: 2
-  autoscaleMin: 2
+  autoscaleMax: 1
+  autoscaleMin: 1
   cpu:
     targetAverageUtilization: 70
   memory:

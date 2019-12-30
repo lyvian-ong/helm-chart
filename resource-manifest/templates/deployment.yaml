@@ -7,7 +7,7 @@ metadata:
      {{- include "resource-manifest.labels" . | nindent 4 }}
     # deployment: {{ include "resource-manifest.fullname" . }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  # replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
        {{- include "resource-manifest.selectorLabels" . | nindent 6 }}
@@ -17,8 +17,8 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxUnavailable: 1 #number of pods are down during update
-      maxSurge: 1 #number of pods are created above the desired number of pods
+      maxUnavailable: 1 #number of pods are down during update TODO
+      maxSurge: 1 #number of pods are created above the desired number of pods TODO
   template:
     metadata:
       labels:
