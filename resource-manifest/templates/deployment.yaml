@@ -38,10 +38,5 @@ spec:
             - containerPort: {{ .Values.port }}
           {{- if .Values.resources }}
           resources:
-            requests:
-              memory: "1950Mi"
-              cpu: "950m"
-            limits:
-              memory: "1950Mi"
-              cpu: "950m"
+            {{ toYaml .Values.resources | indent 12 }}
           {{- end }}
